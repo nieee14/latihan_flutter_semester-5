@@ -1,41 +1,28 @@
 import 'package:flutter/material.dart';
+import '../model/poli.dart';
+import 'poli_detail.dart';
+import 'poli_item.dart';
 
- class PoliPage extends Statefulwidget {
-    const PoliPage({super.key});
+class PoliPage extends StatefulWidget {
+  const PoliPage({super.key});
 
-    @override
-    State<PoliPage> createState() => _PolipageState();
- }
+  @override
+  State<PoliPage> createState() => _PoliPageState();
+}
 
- class _PolipageState extends State<PoliPage> {
-    @override
-    Widget build(BuildContext context) {
-        return Scaffold(
-            appBar: AppBar(titleL const Text("Data Poli")),
-            body: ListView(
-                children: const [
-                    Card(
-                        child: ListTile(
-                            title: const Text("Poli Anak"),
-                        ),
-                    ),
-                    Card(
-                        child: ListTile(
-                            title: const Text("Poli Kandungan"),
-                        ),
-                    ),
-                    Card(
-                        child: ListTile(
-                            title: const Text("Poli Gigi"),
-                        ),
-                    ),
-                    Card(
-                        child: ListTile(
-                            title: const Text("Poli THT"),
-                        ),
-                    ),
-                ]
-            )
-        )
-    }
- }
+class _PoliPageState extends State<PoliPage> {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: const Text("Data Poli")),
+      body: ListView(
+        children: [
+          PoliItem(poli: Poli(namaPoli: "Poli Anak")),
+          PoliItem(poli: Poli(namaPoli: "Poli Kandungan")),
+          PoliItem(poli: Poli(namaPoli: "Poli Gigi")),
+          PoliItem(poli: Poli(namaPoli: "Poli THT")),
+        ],
+      ),
+    );
+  }
+}
