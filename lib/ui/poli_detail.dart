@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_semester5/ui/poli_page.dart';
+import 'package:flutter_semester5/ui/poli_update_form.dart';
 import '../model/poli.dart';
 
 class PoliDetail extends StatefulWidget {
@@ -14,7 +16,9 @@ class _PoliDetailState extends State<PoliDetail> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text("Detail Poli")),
+      appBar: AppBar(title: Text("Detail Poli"),
+      backgroundColor: Colors.amber,
+      ),
       body: Column(
         children: [
           SizedBox(height: 20),
@@ -26,20 +30,56 @@ class _PoliDetailState extends State<PoliDetail> {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
-              ElevatedButton(
-                onPressed: () {},
-                style: ElevatedButton.styleFrom(backgroundColor: Colors.green),
-                child: const Text("Ubah"),
-              ),
-              ElevatedButton(
-                onPressed: () {},
-                style: ElevatedButton.styleFrom(backgroundColor: Colors.red),
-                child: const Text("Hapus"),
-              ),
+             _tombolUbah(),
+             _tombolHapus(),
             ],
           )
         ],
       ),
     );
   }
+
+    _tombolUbah() {
+      return ElevatedButton(
+        onPressed: () {
+          Navigator.push(
+            context,
+             MaterialPageRoute(
+              builder: (context) => PoliUpdateForm(poli: widget.poli)));
+        }, 
+        style: ElevatedButton.styleFrom(backgroundColor: Colors.green),
+        child: const Text("Ubah"));
+    }
+
+    _tombolHapus() {
+      return ElevatedButton(
+        onPressed: () {
+          AlertDialog alertDialog = AlertDialog(
+            content: const Text("Yakin Ingin menghapus data ini"),
+            actions: [
+              //kalau iya
+              ElevatedButton(
+                onPressed: () {
+                  Navigator.pop(context);
+                  Navigator.pushReplacement(context,
+                   MaterialPageRoute(builder: (context) => PoliPage()));
+                },
+                 child: const Text("YA"),
+                  style: ElevatedButton.styleFrom(backgroundColor: Colors.red), 
+                ),
+                //kalau batal
+                ElevatedButton(
+                  onPressed: () {
+                    Navigator.pop(context);
+                  },
+                   child: Text("Tidak"),
+                   style: ElevatedButton.styleFrom(backgroundColor: Colors.green),
+                   )
+            ],
+          );
+          showDialog(context: context, builder: (context) => alertDialog);
+        },
+        style: ElevatedButton.styleFrom(backgroundColor: Colors.red),
+         child: const Text("Hapus"));
+    }
 }
