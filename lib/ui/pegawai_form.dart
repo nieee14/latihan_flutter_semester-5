@@ -17,7 +17,7 @@ class _PegawaiFormState extends State<PegawaiForm> {
     return Scaffold(
       appBar: AppBar(
         title: const Text("Tambah Pegawai"),
-        backgroundColor: const Color.fromARGB(255, 65, 124, 233),
+        backgroundColor: const Color.fromARGB(255, 17, 201, 109),
       ),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(16),
